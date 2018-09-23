@@ -1,0 +1,5 @@
+[{"qs": "How old are you ?", "ans": ["17"]},
+  {"qs": "What is your name ?", "ans": ["Vlad"]},
+  {"qs": "Where are you from ?", "ans": ["Brest"]},
+  {"qs": "MMM ?", "ans": ["Yes", "No"]}
+]
