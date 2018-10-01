@@ -11,14 +11,6 @@ const server = net.createServer((client) => {
     client.id = seed++;
     let log = client.id + ".txt";
     client.on("data", (data) => {
-        if(data === 'FILES')
-        {
-            client.write("ACK");
-        }
-        else
-        {
-            client.write("DEC");
-        }
         if (data === 'QA') {
             fs.readFile("qa.json", (err, data) => {
                 if (err) {
