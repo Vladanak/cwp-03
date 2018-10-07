@@ -2,25 +2,25 @@ const net = require("net");
 const fs = require("fs");
 const port = 8124;
 
-const clientQa = new net.Socket();
+const client = new net.Socket();
 
 let QA;
 let ans;
 let curQA = 0;
 
-clientQa.setEncoding('utf8');
+client.setEncoding('utf8');
 
-clientQa.connect(port, function() {
+client.connect(port, function() {
     console.log('Connected');
-    clientQa.write(process.argv[2]);
+    client.write("QA");
 });
 
-clientQa.on('data', function(data) {
+client.on('data', function(data) {
     if (data == "ACK") {
         fs.readFile("qa.json", (err, data) => {
             if (err) {
                 console.log("Error read qa.json");
-                clientQa.destroy();
+                client.destroy();
             } else {
                 QA = JSON.parse(data);
                 QA = shuffle(QA);
@@ -28,26 +28,26 @@ clientQa.on('data', function(data) {
             }
         });
     } else if (data === "DEC") {
-        clientQa.destroy();
+        client.destroy();
     } else {
         ans = parseInt(data);
-        console.log("Quastion - " + QA[curQA - 1].qs + " server answer " + QA[curQA - 1].ans[ans]);
-        console.log("Answer " + QA[curQA - 1].ans[0]);
+        console.log("Quastion - " + QA[curQA - 1].qa + " server ansver " + QA[curQA - 1].goodAnsBad[ans]);
+        console.log("Good answer " + QA[curQA - 1].goodAnsBad[0]);
         sendQA();
 
     }
-    //clientQa.destroy();
+    //client.destroy();
 });
 
-clientQa.on('close', function() {
+client.on('close', function() {
     console.log('Connection closed');
 });
 
 function sendQA() {
     if (curQA < QA.length) {
-        clientQa.write(QA[curQA++].qs);
+        client.write(QA[curQA++].qa);
     } else {
-        clientQa.destroy();
+        client.destroy();
     }
 }
 

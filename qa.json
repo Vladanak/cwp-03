@@ -1,5 +1,17 @@
-[{"qs": "How old are you ?", "ans": ["17"]},
-  {"qs": "What is your name ?", "ans": ["Vlad"]},
-  {"qs": "Where are you from ?", "ans": ["Brest"]},
-  {"qs": "MMM ?", "ans": ["Yes", "No"]}
+[{
+  "qa": "How are you ?",
+  "goodAnsBad": ["Vlad", "Muraveyko"]
+},
+  {
+    "qa": "How old are you ?",
+    "goodAnsBad": ["20", "19"]
+  },
+  {
+    "qa": "Where are you from ?",
+    "goodAnsBad": ["Brest", "Minsk"]
+  },
+  {
+    "qa": "Do you like ice-cream ?",
+    "goodAnsBad": ["Yes", "No"]
+  }
 ]
