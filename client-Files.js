@@ -8,13 +8,14 @@ const client = new net.Socket();
 const req = 'FILES';
 const goodResp = 'ACK';
 const badResp = 'DEC';
-const resFiles = 'NEXT';
+const resFiles = 'NEXT'
 
 let arrOfFiles = [];
 client.setEncoding('utf8');
 getDirs();
 
 client.connect(port, () => {
+
     client.write(req);
 });
 
@@ -43,27 +44,23 @@ client.on('data', (data) => {
     console.log(arrOfFiles);
     if (arrOfFiles.length === 0)
         client.destroy();
-    else if (data === badResp)
-    {
+    else if (data === badResp) {
         client.destroy();
-    }
-    else if (data === goodResp || data === resFiles)
-    {
+    } else if (data === goodResp || data === resFiles) {
         sendFile()
     }
 
-    function sendFile()
-    {
+    function sendFile() {
         let filePath = arrOfFiles.pop();
         fs.readFile(filePath, (err, data) => {
             let buf = data.toString('hex');
+
             client.write(buf);
             client.write(path.basename(filePath));
         })
     }
 });
 
-client.on('close', function()
-{
+client.on('close', function() {
     console.log('Connection closed');
 });

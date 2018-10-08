@@ -1,14 +1,14 @@
 [{
   "qa": "How are you ?",
-  "goodAnsBad": ["Vlad", "Muraveyko"]
+  "goodAnsBad": ["Vlad", "Mur"]
 },
   {
     "qa": "How old are you ?",
-    "goodAnsBad": ["20", "19"]
+    "goodAnsBad": ["19", "20"]
   },
   {
     "qa": "Where are you from ?",
-    "goodAnsBad": ["Brest", "Minsk"]
+    "goodAnsBad": ["Minsk", "Minsk"]
   },
   {
     "qa": "Do you like ice-cream ?",
